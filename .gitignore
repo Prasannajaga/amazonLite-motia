@@ -15,3 +15,4 @@ src/petstore/
 src/services/pet-store.ts
 src/services/types.ts
 .aider.conf.yml
+.env.example

@@ -46,12 +46,12 @@
     "id": "Auth",
     "config": {
       "src/auth/register.step.ts": {
-        "x": -409,
-        "y": 116
+        "x": 85,
+        "y": 610
       },
       "src/auth/refresh.step.ts": {
-        "x": -378,
-        "y": 626
+        "x": -422,
+        "y": 607
       },
       "src/auth/password-reset.step.ts": {
         "x": -412,
@@ -62,16 +62,67 @@
         "y": 447
       },
       "src/auth/notify-user.step.ts": {
-        "x": 1166,
-        "y": 114
+        "x": 665,
+        "y": 277
       },
       "src/auth/logout.step.ts": {
-        "x": 67,
-        "y": 604
+        "x": -180,
+        "y": 608
       },
       "src/auth/login.step.ts": {
-        "x": 72,
-        "y": 755
+        "x": -420,
+        "y": 768
+      }
+    }
+  },
+  {
+    "id": "Orders",
+    "config": {
+      "src/orders/create.step.ts": {
+        "x": 0,
+        "y": 0
+      },
+      "src/.motia/compiled/orders/create.step.js": {
+        "x": -249,
+        "y": 80
+      }
+    }
+  },
+  {
+    "id": "Reviews",
+    "config": {
+      "src/reviews/create.step.ts": {
+        "x": -174,
+        "y": 30
+      },
+      "src/.motia/compiled/reviews/create.step.js": {
+        "x": 40,
+        "y": 47
+      }
+    }
+  },
+  {
+    "id": "Products",
+    "config": {
+      "src/core/products/update.step.ts": {
+        "x": -307,
+        "y": 139
+      },
+      "src/core/products/list.step.ts": {
+        "x": -301,
+        "y": 288
+      },
+      "src/core/products/get.step.ts": {
+        "x": -35,
+        "y": 138
+      },
+      "src/core/products/delete.step.ts": {
+        "x": -28,
+        "y": 291
+      },
+      "src/core/products/create.step.ts": {
+        "x": -303,
+        "y": 459
       }
     }
   }

@@ -1,5 +1,6 @@
 import { ApiRouteConfig, Handlers } from 'motia'
-import { getDb } from '../config/dbConfig'
+import { authService } from '../services/AuthService'
+import z from 'zod';
 
 export const config: ApiRouteConfig = {
     name: 'Register',
@@ -8,18 +9,47 @@ export const config: ApiRouteConfig = {
     method: 'POST',
     flows: ['Auth'],
     emits: ["send-notification"],
+    bodySchema: z.object({
+        email: z.string(),
+        password: z.string(),
+        full_name: z.string().optional(),
+    })
 }
-export const handler: Handlers['Register'] = async (req, { logger }) => {
-    const body = req.body;
+
+interface RegisterRequest {
+    email: string
+    password: string
+    full_name?: string
+}
+
+export const handler: Handlers['Register'] = async (req, { logger, emit }) => {
+    const body = req.body as RegisterRequest;
     logger.info('Registering user', { email: body.email })
-    return {
-        status: 201,
-        body: {
-            id: "mock-uuid",
-            email: body.email,
-            full_name: body.full_name,
-            is_active: true,
-            role: "user"
+
+    try {
+        const user = await authService.register(body);
+
+        await emit({
+            topic: 'send-notification',
+            data: {
+                email: user.email,
+                subject: 'Welcome to Motia Hackathon',
+                templateId: 'welcome',
+                templateData: {
+                    name: user.full_name
+                }
+            }
+        });
+
+        return {
+            status: 201,
+            body: user
+        }
+    } catch (error: any) {
+        logger.error('Registration failed', { error: error.message });
+        return {
+            status: 400,
+            body: { error: error.message }
         }
     }
 }

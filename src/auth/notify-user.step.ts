@@ -14,7 +14,7 @@ export const config: EventConfig = {
     subject: z.string(),
     templateId: z.string(),
     templateData: z.record(z.any(), z.any()),
-  }),
+  })
 }
 
 export const handler: Handlers['NotifyUser'] = async (input, { traceId, logger }) => {
