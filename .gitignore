@@ -1,0 +1,17 @@
+node_modules
+python_modules
+.venv
+venv
+.motia
+.mermaid
+dist
+*.pyc
+.claude
+.cursor
+.env
+server/*
+tutorial/
+src/petstore/
+src/services/pet-store.ts
+src/services/types.ts
+.aider.conf.yml
