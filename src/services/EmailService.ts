@@ -29,7 +29,7 @@ export class EmailService {
             });
 
             const info = await testTransporter.sendMail({
-                from: process.env.SMTP_FROM || '"Motia Hackathon" <no-reply@motia.dev>',
+                from: process.env.SMTP_FROM || 'noreply@amzLite.com',
                 to: to,
                 subject: subject,
                 html: html,

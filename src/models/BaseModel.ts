@@ -1,6 +1,6 @@
 import { PoolClient, QueryResult, QueryResultRow } from 'pg';
 import { getDb } from '../config/dbConfig';
-import { LIMIT } from '../constants/contants';
+import { LIMIT } from '../constants/common';
 
 export interface PaginatedResult<T> {
     data: T[];

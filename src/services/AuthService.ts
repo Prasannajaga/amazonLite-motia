@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import { userModel } from '../models/User';
 import { refreshTokenModel } from '../models/RefreshToken';
 import { passwordResetTokenModel } from '../models/PasswordResetToken';
+import { Logger } from 'motia';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'a7a6da7%$%$@#%$@%^#@%672365264';
 const ACCESS_TOKEN_EXPIRY = '15m';
@@ -92,6 +93,7 @@ export class AuthService {
 
         const tokens = this.generateTokens(user.id, user.email, user.role);
 
+
         await refreshTokenModel.create({
             user_id: user.id,
             token: tokens.refresh_token,
@@ -109,14 +111,18 @@ export class AuthService {
         };
     }
 
-    async requestPasswordReset(email: string): Promise<string> {
+    async requestPasswordReset(email: string, logger: Logger): Promise<string> {
         const user = await userModel.findByEmail(email);
         if (!user) {
             throw new Error('User not found');
         }
 
+        logger.info('Password reset requested', { email });
+
         const token = crypto.randomBytes(32).toString('hex');
         const expiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000);
+
+        logger.info('Password reset token generated', { token });
 
         await passwordResetTokenModel.create({
             user_id: user.id,
@@ -164,7 +170,11 @@ export class AuthService {
         const payload = { sub: userId, email, role };
 
         const access_token = jwt.sign(payload, JWT_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRY });
-        const refresh_token = jwt.sign({ sub: userId, type: 'refresh' }, JWT_SECRET, { expiresIn: REFRESH_TOKEN_EXPIRY });
+        const refresh_token = jwt.sign({
+            sub: userId,
+            type: 'refresh',
+            jti: crypto.randomBytes(16).toString('hex')
+        }, JWT_SECRET, { expiresIn: REFRESH_TOKEN_EXPIRY });
 
         return {
             access_token,
