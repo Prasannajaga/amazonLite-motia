@@ -1,10 +1,7 @@
--- E-Commerce Database Schema
--- PostgreSQL 14+
-
 -- Enums
 CREATE TYPE billing_cycle AS ENUM ('monthly', 'yearly');
 CREATE TYPE subscription_status AS ENUM ('active', 'cancelled', 'expired');
-CREATE TYPE order_status AS ENUM ('pending', 'paid', 'shipped', 'completed', 'cancelled');
+CREATE TYPE order_status AS ENUM ('pending', 'paid', 'shipped', 'completed', 'cancelled', 'deleted');
 
 -- Users Table
 CREATE TABLE users (

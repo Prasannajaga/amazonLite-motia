@@ -23,7 +23,7 @@ export const handler: Handlers['RequestPasswordReset'] = async (req, { logger, e
     logger.info('Password reset requested', { email: body.email })
 
     try {
-        const token = await authService.requestPasswordReset(body.email);
+        const token = await authService.requestPasswordReset(body.email, logger);
 
         const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
 

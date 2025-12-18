@@ -10,7 +10,6 @@ export const config: ApiRouteConfig = {
     method: 'POST',
     flows: ['Auth'],
     emits: [],
-    middleware: [authMiddleware],
     bodySchema: z.object({
         refresh_token: z.string(),
     }),
