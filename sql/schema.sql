@@ -1,6 +1,6 @@
 -- Enums
 CREATE TYPE billing_cycle AS ENUM ('monthly', 'yearly');
-CREATE TYPE subscription_status AS ENUM ('active', 'cancelled', 'expired');
+CREATE TYPE subscription_status AS ENUM ('active', 'cancelled', 'expired' , 'pending');
 CREATE TYPE order_status AS ENUM ('pending', 'paid', 'shipped', 'completed', 'cancelled', 'deleted');
 CREATE TYPE shipment_status AS ENUM (
   'created',

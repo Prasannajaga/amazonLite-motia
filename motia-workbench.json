@@ -18,31 +18,6 @@
     }
   },
   {
-    "id": "basic-tutorial",
-    "config": {
-      "src/petstore/state-audit-cron.step.ts": {
-        "x": -586,
-        "y": 221,
-        "sourceHandlePosition": "right"
-      },
-      "src/petstore/process-food-order.step.ts": {
-        "x": 222,
-        "y": -26,
-        "sourceHandlePosition": "bottom"
-      },
-      "src/petstore/notification.step.ts": {
-        "x": 422,
-        "y": 453,
-        "sourceHandlePosition": "bottom"
-      },
-      "src/petstore/api.step.ts": {
-        "x": -598,
-        "y": -38,
-        "sourceHandlePosition": "right"
-      }
-    }
-  },
-  {
     "id": "Reviews",
     "config": {
       "src/reviews/create.step.ts": {
@@ -162,47 +137,6 @@
     }
   },
   {
-    "id": "subscription-flow",
-    "config": {
-      "src/billing/subscription/subscription-me.step.ts": {
-        "x": 58,
-        "y": 0
-      },
-      "src/billing/subscription/renewal-cron.step.ts": {
-        "x": -616,
-        "y": 360
-      },
-      "src/billing/subscription/cancellation-expiry-cron.step.ts": {
-        "x": -478,
-        "y": 581
-      },
-      "src/billing/plans/plan-update.step.ts": {
-        "x": 79,
-        "y": 891
-      },
-      "src/billing/plans/plan-list.step.ts": {
-        "x": 93,
-        "y": 1042
-      },
-      "src/billing/plans/plan-delete.step.ts": {
-        "x": 75,
-        "y": 1193
-      },
-      "src/billing/plans/plan-create.step.ts": {
-        "x": 86,
-        "y": 1344
-      },
-      "src/billing/subscription/notification.step.ts": {
-        "x": 350,
-        "y": 193
-      },
-      "src/.motia/compiled/billing/subscription/notification.step.js": {
-        "x": 350,
-        "y": 412
-      }
-    }
-  },
-  {
     "id": "Products",
     "config": {
       "src/core/products/update.step.ts": {
@@ -218,12 +152,86 @@
         "y": 302
       },
       "src/core/products/delete.step.ts": {
-        "x": -28,
-        "y": 294
+        "x": -313,
+        "y": 300
       },
       "src/core/products/create.step.ts": {
         "x": -303,
         "y": 459
+      }
+    }
+  },
+  {
+    "id": "basic-tutorial",
+    "config": {
+      "src/petstore/state-audit-cron.step.ts": {
+        "x": -871,
+        "y": 445,
+        "sourceHandlePosition": "right"
+      },
+      "src/petstore/process-food-order.step.ts": {
+        "x": 205,
+        "y": -20,
+        "sourceHandlePosition": "bottom"
+      },
+      "src/petstore/notification.step.ts": {
+        "x": 422,
+        "y": 488,
+        "sourceHandlePosition": "bottom"
+      },
+      "src/petstore/api.step.ts": {
+        "x": -867,
+        "y": 240,
+        "sourceHandlePosition": "right"
+      }
+    }
+  },
+  {
+    "id": "subscription-flow",
+    "config": {
+      "src/billing/subscription/success-notification.step.ts": {
+        "x": 350,
+        "y": 663
+      },
+      "src/billing/subscription/subscription-me.step.ts": {
+        "x": -640,
+        "y": 182
+      },
+      "src/billing/subscription/renewal-cron.step.ts": {
+        "x": 0,
+        "y": 0
+      },
+      "src/billing/subscription/failure-notification.step.ts": {
+        "x": 529,
+        "y": 8
+      },
+      "src/billing/subscription/create-subscription.step.ts": {
+        "x": 59,
+        "y": 740
+      },
+      "src/billing/subscription/cancellation-expiry-cron.step.ts": {
+        "x": -628,
+        "y": 598
+      },
+      "src/billing/subscription/cancel-subscription.step.ts": {
+        "x": -638,
+        "y": 12
+      },
+      "src/billing/plans/plan-update.step.ts": {
+        "x": -621,
+        "y": 860
+      },
+      "src/billing/plans/plan-list.step.ts": {
+        "x": -395,
+        "y": 859
+      },
+      "src/billing/plans/plan-delete.step.ts": {
+        "x": -394,
+        "y": 1016
+      },
+      "src/billing/plans/plan-create.step.ts": {
+        "x": -622,
+        "y": 1021
       }
     }
   }

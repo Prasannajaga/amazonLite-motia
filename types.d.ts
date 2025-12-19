@@ -27,17 +27,24 @@ declare module 'motia' {
     'GetOrder': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'DeleteOrder': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'CreateOrder': ApiRouteHandler<{ items: Array<{ product_id: string; quantity: unknown; price_at_purchase: number }>; currency: string }, unknown, never>
-    'SuccessSubscriptionNotification': EventHandler<{ type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown }, never>
+    'SuccessSubscriptionNotification': EventHandler<{ type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown }, never>
     'GetMySubscription': ApiRouteHandler<Record<string, unknown>, unknown, never>
-    'SubscriptionRenewalJob': CronHandler<{ topic: 'SUBSCRIPTION_NOTIFY_FAILURE'; data: { type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown } } | { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>
+    'SubscriptionRenewalJob': CronHandler<{ topic: 'SUBSCRIPTION_NOTIFY_FAILURE'; data: { type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown } } | { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>
     'FailureSubscriptionNotification': EventHandler<{ type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown }, never>
-    'CreateSubscription': ApiRouteHandler<{ plan_id: string }, unknown, { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>
+    'CreateSubscription': ApiRouteHandler<{ plan_id: string }, unknown, { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>
     'CancellationExpiryJob': CronHandler<{ topic: 'SUBSCRIPTION_NOTIFY_FAILURE'; data: { type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown } }>
     'CancelSubscription': ApiRouteHandler<Record<string, unknown>, unknown, { topic: 'SUBSCRIPTION_NOTIFY_FAILURE'; data: { type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown } }>
     'UpdatePlan': ApiRouteHandler<{ name?: string; description?: string; price?: number; billing_cycle?: 'monthly' | 'yearly'; features?: unknown; is_active?: boolean }, unknown, never>
     'ListPlans': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'DeletePlan': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'CreatePlan': ApiRouteHandler<{ name: string; description?: string; price: number; billing_cycle: 'monthly' | 'yearly'; features?: unknown }, unknown, never>
+    'Register': ApiRouteHandler<{ email: string; password: string; full_name?: string }, unknown, { topic: 'send-notification'; data: { email: string; subject: string; templateId: string; templateData: Record<string, unknown> } }>
+    'RefreshToken': ApiRouteHandler<{ refresh_token: string }, unknown, never>
+    'RequestPasswordReset': ApiRouteHandler<{ email: string }, unknown, { topic: 'send-notification'; data: { email: string; subject: string; templateId: string; templateData: Record<string, unknown> } }>
+    'ConfirmPasswordReset': ApiRouteHandler<{ token: string; new_password: string }, unknown, { topic: 'send-notification'; data: { email: string; subject: string; templateId: string; templateData: Record<string, unknown> } }>
+    'NotifyUser': EventHandler<{ email: string; subject: string; templateId: string; templateData: Record<string, unknown> }, never>
+    'Logout': ApiRouteHandler<{ refresh_token: string }, unknown, never>
+    'Login': ApiRouteHandler<{ username: string; password: string }, unknown, never>
   }
     
 }
