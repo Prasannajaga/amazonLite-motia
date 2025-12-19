@@ -10,6 +10,7 @@ export const config: ApiRouteConfig = {
     path: '/products/update',
     method: 'POST',
     flows: ['Products'],
+    description: "Update a product",
     emits: [],
     middleware: [authMiddleware],
     bodySchema: z.object({

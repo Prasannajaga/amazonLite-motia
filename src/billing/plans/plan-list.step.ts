@@ -7,7 +7,8 @@ export const config: ApiRouteConfig = {
     type: 'api',
     path: '/plans',
     method: 'GET',
-    flows: ['subscription-flow'],
+    flows: ['plan'],
+    description: "List all plans",
     emits: [],
     middleware: [authMiddleware],
     queryParams: [

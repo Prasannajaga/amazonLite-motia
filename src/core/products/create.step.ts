@@ -8,6 +8,7 @@ export const config: ApiRouteConfig = {
     name: 'CreateProduct',
     type: 'api',
     path: '/products',
+    description: "Create a product",
     method: 'POST',
     flows: ['Products'],
     emits: [],

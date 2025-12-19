@@ -10,6 +10,7 @@ export const config: ApiRouteConfig = {
     path: '/products/delete',
     method: 'POST',
     flows: ['Products'],
+    description: "Delete a product",
     emits: [],
     middleware: [authMiddleware],
     bodySchema: z.object({

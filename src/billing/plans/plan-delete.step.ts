@@ -7,7 +7,8 @@ export const config: ApiRouteConfig = {
     type: 'api',
     path: '/plans/:id',
     method: 'DELETE',
-    flows: ['subscription-flow'],
+    flows: ['plan'],
+    description: "Delete a plan",
     emits: [],
     middleware: [authMiddleware],
 }

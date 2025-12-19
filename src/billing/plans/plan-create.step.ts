@@ -8,7 +8,8 @@ export const config: ApiRouteConfig = {
     type: 'api',
     path: '/plans',
     method: 'POST',
-    flows: ['subscription-flow'],
+    flows: ['plan'],
+    description: "Create a plan",
     emits: [],
     middleware: [authMiddleware],
     bodySchema: z.object({

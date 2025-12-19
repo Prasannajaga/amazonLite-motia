@@ -7,6 +7,7 @@ export const config: ApiRouteConfig = {
     type: 'api',
     path: '/products',
     method: 'GET',
+    description: "List all products",
     middleware: [authMiddleware],
     flows: ['Products'],
     emits: [],
