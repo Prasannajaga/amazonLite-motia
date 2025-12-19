@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: #ef4444;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .content {
+            padding: 30px;
+            border: 1px solid #e5e7eb;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ef4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .alert {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Payment Action Required</h1>
+    </div>
+    <div class="content">
+        <p>Hello {{fullName}},</p>
+        <div class="alert">
+            <p>We were unable to process your recent payment for the <strong>{{planName}}</strong> plan.</p>
+        </div>
+        <p>Your subscription is currently in a challenged state. Please update your payment method to avoid any service
+            interruption.</p>
+        <a href="#" class="button">Update Payment Method</a>
+    </div>
+    <div class="footer">
+        &copy; 2025 Motia Hackathon. All rights reserved.
+    </div>
+</body>
+
+</html>
