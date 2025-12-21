@@ -1,5 +1,4 @@
-import { BaseModel, PaginatedResult } from './BaseModel';
-import { PoolClient } from 'pg';
+import { BaseModel } from './BaseModel';
 
 export interface OrderEntity {
     id: string;

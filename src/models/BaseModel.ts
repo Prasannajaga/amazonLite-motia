@@ -1,4 +1,4 @@
-import { PoolClient, QueryResult, QueryResultRow } from 'pg';
+import { PoolClient, QueryResultRow } from 'pg';
 import { getDb } from '../config/dbConfig';
 import { LIMIT } from '../constants/common';
 
