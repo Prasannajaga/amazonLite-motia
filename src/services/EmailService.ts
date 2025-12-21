@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import fs from 'fs/promises';
+import path from 'path';
 
 export class EmailService {
     private transporter: nodemailer.Transporter;
@@ -42,6 +44,17 @@ export class EmailService {
             console.error('[EmailService] Failed to send email:', error);
             throw error;
         }
+    }
+
+    async renderTemplate(templateName: string, variables: Record<string, string>): Promise<string> {
+        const templatePath = path.join(process.cwd(), 'src', 'templates', `${templateName}.html`);
+        let content = await fs.readFile(templatePath, 'utf-8');
+
+        for (const [key, value] of Object.entries(variables)) {
+            content = content.replace(new RegExp(`{{${key}}}`, 'g'), value);
+        }
+
+        return content;
     }
 }
 

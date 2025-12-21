@@ -54,16 +54,20 @@
 
 <body>
     <div class="header">
-        <h1>Payment Action Required</h1>
+        <h1>Payment Failed</h1>
     </div>
     <div class="content">
         <p>Hello {{fullName}},</p>
         <div class="alert">
-            <p>We were unable to process your recent payment for the <strong>{{planName}}</strong> plan.</p>
+            <p>We were unable to process the payment for your subscription (<strong>{{subscriptionId}}</strong>).</p>
         </div>
-        <p>Your subscription is currently in a challenged state. Please update your payment method to avoid any service
+        <p style="color: #d9534f; font-weight: bold;">Please update your payment method to avoid any service
             interruption.</p>
+        <p>We will attempt to process the payment again in 24 hours.</p>
         <a href="#" class="button">Update Payment Method</a>
+    </div>
+    <div class="footer">
+        &copy; 2025 Amazon Lite. All rights reserved.
     </div>
 </body>
 

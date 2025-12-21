@@ -22,6 +22,10 @@ export class ProductService {
         });
     }
 
+    async checkProductExists(ids: string[]) {
+        return await productModel.checkStockAvailable(ids);
+    }
+
     async updateProduct(productId: string, data: Partial<ProductEntity>): Promise<ProductEntity | null> {
         return await productModel.update(productId, data);
     }

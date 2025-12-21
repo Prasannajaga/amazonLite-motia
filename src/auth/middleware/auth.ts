@@ -1,5 +1,6 @@
 import { ApiMiddleware } from 'motia'
 import jwt from 'jsonwebtoken'
+import { stripeService } from '../../services/StripeService'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key'
 
@@ -29,3 +30,30 @@ export const authMiddleware: ApiMiddleware = async (req, ctx, next) => {
         return { status: 401, body: { error: 'Unauthorized: Invalid token' } }
     }
 }
+
+
+export const stripeMiddleWare: ApiMiddleware = async (req, ctx, next) => {
+    const sig = req.headers['stripe-signature'] as string;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    let event;
+
+    try {
+
+        if (webhookSecret && sig) {
+            const rawBody = (req as any).rawBody || JSON.stringify(req.body);
+            event = stripeService.constructEvent(rawBody, sig, webhookSecret);
+            (req as any).event = event;
+            return next()
+        } else {
+            throw new Error('Missing webhook secret or signature');
+        }
+
+    } catch (err: any) {
+        ctx.logger.error('Stripe webhook signature verification failed', { error: err.message });
+        return {
+            status: 400,
+            body: `Webhook Error: ${err.message}`
+        }
+    }
+
+}   

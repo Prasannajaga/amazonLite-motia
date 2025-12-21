@@ -23,7 +23,7 @@ export class AuthService {
         const newUser = await userModel.create({
             email: data.email,
             hashed_password: hashedPassword,
-            full_name: data.full_name,
+            full_name: data?.full_name || undefined,
             is_active: true,
             role: 'user',
         });

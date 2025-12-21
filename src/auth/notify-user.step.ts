@@ -14,7 +14,16 @@ export const config: EventConfig = {
     subject: z.string(),
     templateId: z.string(),
     templateData: z.record(z.any(), z.any()),
-  })
+  }),
+  infrastructure: {
+    handler: {
+      timeout: 60,
+    },
+    queue: {
+      maxRetries: 3,
+      delaySeconds: 60,
+    }
+  }
 }
 
 export const handler: Handlers['NotifyUser'] = async (input, { traceId, logger }) => {

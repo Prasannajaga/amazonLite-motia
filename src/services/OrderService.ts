@@ -5,6 +5,7 @@ import { CreateOrderRequest } from '../core/orders/type';
 
 export class OrderService {
 
+    // checkProducTExist first to make sure it is active and in stock 
     async createOrder(userId: string, data: CreateOrderRequest) {
         const client = await getDb();
 
@@ -56,7 +57,6 @@ export class OrderService {
             );
 
             const order = orderResult.rows[0];
-
             for (const item of itemsToInsert) {
                 await client.query(
                     `

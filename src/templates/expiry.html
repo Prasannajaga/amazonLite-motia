@@ -13,7 +13,7 @@
         }
 
         .header {
-            background: #ef4444;
+            background: #f59e0b;
             color: white;
             padding: 20px;
             text-align: center;
@@ -36,34 +36,27 @@
         .button {
             display: inline-block;
             padding: 12px 24px;
-            background: #ef4444;
+            background: #f59e0b;
             color: white;
             text-decoration: none;
             border-radius: 6px;
             margin-top: 20px;
-        }
-
-        .alert {
-            background: #fee2e2;
-            border-left: 4px solid #ef4444;
-            padding: 15px;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <h1>Payment Action Required</h1>
+        <h1>Subscription Expired</h1>
     </div>
     <div class="content">
         <p>Hello {{fullName}},</p>
-        <div class="alert">
-            <p>We were unable to process your recent payment for the <strong>{{planName}}</strong> plan.</p>
-        </div>
-        <p>Your subscription is currently in a challenged state. Please update your payment method to avoid any service
-            interruption.</p>
-        <a href="#" class="button">Update Payment Method</a>
+        <p>Your subscription (<strong>{{subscriptionId}}</strong>) has expired.</p>
+        <p>Your access to premium features has been suspended. To regain access, please renew your subscription.</p>
+        <a href="#" class="button">Renew Subscription</a>
+    </div>
+    <div class="footer">
+        &copy; 2025 Amazon Lite. All rights reserved.
     </div>
 </body>
 

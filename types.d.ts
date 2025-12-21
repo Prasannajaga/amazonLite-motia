@@ -12,16 +12,21 @@ declare module 'motia' {
   }
 
   interface Handlers {
-    'StateAuditJob': CronHandler<{ topic: 'notification'; data: { templateId: string; email: string; templateData: Record<string, unknown> } }>
-    'ProcessFoodOrder': EventHandler<{ email: string; quantity: number; petId: string }, { topic: 'notification'; data: { templateId: string; email: string; templateData: Record<string, unknown> } }>
-    'Notification': EventHandler<{ templateId: string; email: string; templateData: Record<string, unknown> }, never>
-    'ApiTrigger': ApiRouteHandler<{ pet: { name: string; photoUrl: string }; foodOrder?: { quantity: number } }, ApiResponse<200, { id: string; name: string; photoUrl: string }>, { topic: 'process-food-order'; data: { email: string; quantity: number; petId: string } }>
+    'GetTrackingInfo': ApiRouteHandler<Record<string, unknown>, unknown, never>
+    'ProcessShipmentEvent': EventHandler<{ shipmentId: string; eventType: string; facility: string; metadata?: Record<string, unknown> | unknown; traceId: string }, never>
+    'OrderPaidShipmentTrigger': EventHandler<{ orderId: string; userId: string }, never>
+    'AddShipmentEvent': ApiRouteHandler<{ event_type: 'PACKED' | 'DEPARTED_WAREHOUSE' | 'ARRIVED_HUB' | 'DEPARTED_HUB' | 'OUT_FOR_DELIVERY' | 'DELIVERED' | 'FAILED_DELIVERY' | 'RETURNED'; facility?: string; metadata?: Record<string, unknown> }, unknown, { topic: 'SHIPMENT_EVENT_RECEIVED'; data: { shipmentId: string; eventType: string; facility: string; metadata?: Record<string, unknown> | unknown; traceId: string } }>
+    'UpdateReview': ApiRouteHandler<{ rating?: unknown; comment?: string }, unknown, never>
+    'ListReviews': ApiRouteHandler<Record<string, unknown>, unknown, never>
+    'GetReview': ApiRouteHandler<Record<string, unknown>, unknown, never>
+    'DeleteReview': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'CreateReview': ApiRouteHandler<{ order_id: string; rating: unknown; comment?: string }, unknown, never>
     'UpdateProduct': ApiRouteHandler<{ id: string; name?: string; description?: string; price?: number; stock_quantity?: unknown; image_url?: string; is_active?: boolean }, unknown, never>
     'ListProducts': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'GetProduct': ApiRouteHandler<Record<string, unknown>, unknown, never>
-    'DeleteProduct': ApiRouteHandler<{ id: string }, unknown, never>
+    'DeleteProduct': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'CreateProduct': ApiRouteHandler<{ name: string; description?: string; price: number; stock_quantity: unknown; image_url?: string }, unknown, never>
+    'CheckProductExists': ApiRouteHandler<{ productIds: Array<string> }, unknown, never>
     'UpdateOrder': ApiRouteHandler<{ order_status?: 'pending' | 'paid' | 'shipped' | 'completed' | 'cancelled'; notes?: string }, unknown, never>
     'ListOrders': ApiRouteHandler<Record<string, unknown>, unknown, never>
     'GetOrder': ApiRouteHandler<Record<string, unknown>, unknown, never>
@@ -29,6 +34,7 @@ declare module 'motia' {
     'CreateOrder': ApiRouteHandler<{ items: Array<{ product_id: string; quantity: unknown; price_at_purchase: number }>; currency: string }, unknown, never>
     'SuccessSubscriptionNotification': EventHandler<{ type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown }, never>
     'GetMySubscription': ApiRouteHandler<Record<string, unknown>, unknown, never>
+    'StripeWebhook': ApiRouteHandler<Record<string, unknown>, unknown, { topic: 'ORDER_PAID'; data: { orderId: string; userId: string } } | { topic: 'SUBSCRIPTION_NOTIFY_FAILURE'; data: { type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown } } | { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>
     'SubscriptionRenewalJob': CronHandler<{ topic: 'SUBSCRIPTION_NOTIFY_FAILURE'; data: { type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown } } | { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>
     'FailureSubscriptionNotification': EventHandler<{ type: 'CANCELLATION' | 'PAYMENT_FAILURE' | 'EXPIRY'; userId: string; subscriptionId: string; planId: string; status?: unknown; cancelledAt?: unknown }, never>
     'CreateSubscription': ApiRouteHandler<{ plan_id: string }, unknown, { topic: 'SUBSCRIPTION_NOTIFY_SUCESS'; data: { type: 'CREATED' | 'RENEWAL'; userId: string; subscriptionId: string; planId: string; plan?: { name: string; price: number }; startDate?: unknown; endDate?: unknown; status?: unknown } }>

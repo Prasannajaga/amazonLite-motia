@@ -1,5 +1,6 @@
 import { subscriptionModel, SubscriptionEntity } from '../models/Subscription';
 import { planModel } from '../models/Plan';
+import { paginationService } from './PaginationService';
 
 export class SubscriptionService {
     async createSubscription(userId: string, planId: string): Promise<SubscriptionEntity> {
@@ -82,12 +83,24 @@ export class SubscriptionService {
         return { success, subscription: updatedSubscription! };
     }
 
-    async findActiveSoonToExpire(): Promise<SubscriptionEntity[]> {
-        return await subscriptionModel.findActiveSoonToExpire();
+    async findActiveSoonToExpire(callback: (subs: SubscriptionEntity[]) => Promise<void> | void): Promise<SubscriptionEntity[]> {
+        return await paginationService.fetchAllRecursive(
+            subscriptionModel,
+            callback,
+            100,
+            null,
+            "status = 'active' AND end_date <= NOW()"
+        );
     }
 
-    async findCancelledSoonToExpire(): Promise<SubscriptionEntity[]> {
-        return await subscriptionModel.findCancelledSoonToExpire();
+    async findCancelledSoonToExpire(callback: (subs: SubscriptionEntity[]) => Promise<void> | void): Promise<SubscriptionEntity[]> {
+        return await paginationService.fetchAllRecursive(
+            subscriptionModel,
+            callback,
+            100,
+            null,
+            "status = 'cancelled' AND end_date <= NOW()"
+        );
     }
 
     async expireCancelledSubscription(subscriptionId: string): Promise<SubscriptionEntity | null> {
@@ -106,9 +119,9 @@ export class SubscriptionService {
         return endDate;
     }
 
+    // for now just add mock charge for testing 
     private async mockCharge(userId: string, amount: number): Promise<boolean> {
         console.log(`[MockPayment] Charging user ${userId} amount ${amount}`);
-        // Simulate success most of the time
         return Math.random() > 0.1;
     }
 }

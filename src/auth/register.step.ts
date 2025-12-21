@@ -33,7 +33,7 @@ export const handler: Handlers['Register'] = async (req, { logger, emit }) => {
             topic: 'send-notification',
             data: {
                 email: user.email,
-                subject: 'Welcome to Motia Hackathon',
+                subject: 'Welcome to amazonLite',
                 templateId: 'welcome',
                 templateData: {
                     name: user.full_name

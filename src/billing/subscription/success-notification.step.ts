@@ -21,7 +21,17 @@ export const config: EventConfig = {
         endDate: z.any().optional(),
         status: z.any().optional(),
     }),
+    infrastructure: {
+        handler: {
+            timeout: 60,
+        },
+        queue: {
+            maxRetries: 3,
+            delaySeconds: 60,
+        }
+    }
 }
+
 
 import { userModel } from '../../models/User'
 import { notificationService } from '../../services/NotificationService'
