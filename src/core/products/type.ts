@@ -8,9 +8,6 @@ interface UpdateProductRequest {
     is_active?: boolean;
 }
 
-interface DeleteProductRequest {
-    id: string;
-}
 
 interface CreateProductRequest {
     name: string;
@@ -20,4 +17,4 @@ interface CreateProductRequest {
     image_url?: string;
 }
 
-export { UpdateProductRequest, DeleteProductRequest, CreateProductRequest }
+export { UpdateProductRequest, CreateProductRequest }

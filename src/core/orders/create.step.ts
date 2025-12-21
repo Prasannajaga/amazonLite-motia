@@ -9,6 +9,7 @@ export const config: ApiRouteConfig = {
     name: 'CreateOrder',
     type: 'api',
     path: '/orders',
+    description: "create a new order by default status to pending",
     method: 'POST',
     flows: ['Orders'],
     emits: [],

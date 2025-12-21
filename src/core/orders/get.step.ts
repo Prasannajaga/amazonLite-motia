@@ -7,6 +7,7 @@ export const config: ApiRouteConfig = {
     name: 'GetOrder',
     type: 'api',
     path: '/orders/:id',
+    description: "get the order details by orderId",
     method: 'GET',
     flows: ['Orders'],
     emits: [],

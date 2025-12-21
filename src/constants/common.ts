@@ -1,4 +1,4 @@
-const LIMIT = 20
+const LIMIT = 100
 
 export {
     LIMIT

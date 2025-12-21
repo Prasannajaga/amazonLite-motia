@@ -8,9 +8,10 @@ export const config: ApiRouteConfig = {
     name: 'UpdateOrder',
     type: 'api',
     path: '/orders/:id',
+    description: "user alowed to update only status and notes of the order",
     method: 'PATCH',
     flows: ['Orders'],
-    emits: [],
+    emits: [''],
     middleware: [authMiddleware],
     bodySchema: z.object({
         order_status: z.enum(['pending', 'paid', 'shipped', 'completed', 'cancelled']).optional(),
@@ -18,7 +19,7 @@ export const config: ApiRouteConfig = {
     }),
 }
 
-export const handler: Handlers['UpdateOrder'] = async (req, { logger }) => {
+export const handler: Handlers['UpdateOrder'] = async (req, { logger, emit }) => {
     const user = (req as any).user;
     const id = req.pathParams.id;
     const body = req.body as UpdateOrderRequest;

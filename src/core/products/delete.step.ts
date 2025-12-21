@@ -2,30 +2,26 @@ import { ApiRouteConfig, Handlers } from 'motia'
 import z from 'zod'
 import { authMiddleware } from '../../auth/middleware/auth'
 import { productService } from '../../services/ProductService'
-import { DeleteProductRequest } from './type'
 
 export const config: ApiRouteConfig = {
     name: 'DeleteProduct',
     type: 'api',
-    path: '/products/delete',
-    method: 'POST',
+    path: '/products/delete/:id',
+    method: 'DELETE',
     flows: ['Products'],
     description: "Delete a product",
     emits: [],
     middleware: [authMiddleware],
-    bodySchema: z.object({
-        id: z.string().uuid(),
-    }),
 }
 
 
 
 export const handler: Handlers['DeleteProduct'] = async (req, { logger }) => {
-    const body = req.body as DeleteProductRequest;
-    logger.info('Deleting product', { id: body.id })
-
+    console.log(req.body);
+    const id = req.pathParams.id;
+    logger.info('Deleting product', id)
     try {
-        const success = await productService.deleteProduct(body.id);
+        const success = await productService.deleteProduct(id);
 
         if (!success) {
             return { status: 404, body: { error: 'Product not found' } }

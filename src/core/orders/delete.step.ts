@@ -8,6 +8,7 @@ export const config: ApiRouteConfig = {
     type: 'api',
     path: '/orders/:id',
     method: 'DELETE',
+    description: "soft delete order by changing the order status to deleted",
     flows: ['Orders'],
     emits: [],
     middleware: [authMiddleware],

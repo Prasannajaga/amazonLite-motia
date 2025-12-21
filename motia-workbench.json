@@ -18,6 +18,93 @@
     }
   },
   {
+    "id": "Products",
+    "config": {
+      "src/core/products/update.step.ts": {
+        "x": -831,
+        "y": -37
+      },
+      "src/core/products/list.step.ts": {
+        "x": -572,
+        "y": -39
+      },
+      "src/core/products/get.step.ts": {
+        "x": -613,
+        "y": 177
+      },
+      "src/core/products/delete.step.ts": {
+        "x": -832,
+        "y": 388
+      },
+      "src/core/products/create.step.ts": {
+        "x": -829,
+        "y": 177
+      },
+      "src/core/products/check-product-exists.step.ts": {
+        "x": -517,
+        "y": 385
+      }
+    }
+  },
+  {
+    "id": "subscription-flow",
+    "config": {
+      "src/billing/subscription/success-notification.step.ts": {
+        "x": 681,
+        "y": 333
+      },
+      "src/billing/subscription/subscription-me.step.ts": {
+        "x": -640,
+        "y": 182
+      },
+      "src/billing/subscription/stripe-webhook.step.ts": {
+        "x": -654,
+        "y": 833
+      },
+      "src/billing/subscription/renewal-cron.step.ts": {
+        "x": -651,
+        "y": 342
+      },
+      "src/billing/subscription/failure-notification.step.ts": {
+        "x": 680,
+        "y": 177
+      },
+      "src/billing/subscription/create-subscription.step.ts": {
+        "x": -376,
+        "y": 182
+      },
+      "src/billing/subscription/cancellation-expiry-cron.step.ts": {
+        "x": -654,
+        "y": 572
+      },
+      "src/billing/subscription/cancel-subscription.step.ts": {
+        "x": -638,
+        "y": 12
+      }
+    }
+  },
+  {
+    "id": "plan",
+    "config": {
+      "src/billing/plans/plan-update.step.ts": {
+        "x": -419,
+        "y": 146
+      },
+      "src/billing/plans/plan-list.step.ts": {
+        "x": -418,
+        "y": -66
+      },
+      "src/billing/plans/plan-delete.step.ts": {
+        "x": -230,
+        "y": -69
+      },
+      "src/billing/plans/plan-create.step.ts": {
+        "x": -212,
+        "y": 146
+      }
+    }
+  },
+  {
     "id": "basic-tutorial",
     "config": {
       "src/petstore/state-audit-cron.step.ts": {
@@ -34,20 +121,51 @@
         "x": 422,
         "y": 488,
         "sourceHandlePosition": "bottom"
-      },
-      "src/petstore/api.step.ts": {
-        "x": -867,
-        "y": 240,
-        "sourceHandlePosition": "right"
       }
     }
   },
   {
-    "id": "Reviews",
+    "id": "Orders",
     "config": {
-      "src/core/reviews/create.step.ts": {
-        "x": 0,
-        "y": 0
+      "src/core/shipments/tracking.step.ts": {
+        "x": -26,
+        "y": 7
+      },
+      "src/core/shipments/process-event.step.ts": {
+        "x": 350,
+        "y": 149
+      },
+      "src/core/shipments/order-paid.step.ts": {
+        "x": 271,
+        "y": 399
+      },
+      "src/core/shipments/add-event.step.ts": {
+        "x": -31,
+        "y": 148
+      },
+      "src/core/orders/update.step.ts": {
+        "x": -460,
+        "y": 181
+      },
+      "src/core/orders/list.step.ts": {
+        "x": -185,
+        "y": 688
+      },
+      "src/core/orders/get.step.ts": {
+        "x": -454,
+        "y": 689
+      },
+      "src/core/orders/delete.step.ts": {
+        "x": -453,
+        "y": 906
+      },
+      "src/core/orders/create.step.ts": {
+        "x": -74,
+        "y": 905
+      },
+      "src/billing/subscription/stripe-webhook.step.ts": {
+        "x": -456,
+        "y": 449
       }
     }
   },
@@ -71,8 +189,8 @@
         "y": 447
       },
       "src/auth/notify-user.step.ts": {
-        "x": 351,
-        "y": 277
+        "x": 446,
+        "y": 275
       },
       "src/auth/logout.step.ts": {
         "x": -178,
@@ -85,106 +203,27 @@
     }
   },
   {
-    "id": "plan",
+    "id": "Reviews",
     "config": {
-      "src/billing/plans/plan-update.step.ts": {
-        "x": -411,
-        "y": 149
+      "src/core/reviews/update.step.ts": {
+        "x": -407,
+        "y": 215
       },
-      "src/billing/plans/plan-list.step.ts": {
-        "x": -418,
-        "y": -66
+      "src/core/reviews/list.step.ts": {
+        "x": -85,
+        "y": 7
       },
-      "src/billing/plans/plan-delete.step.ts": {
-        "x": -142,
-        "y": -49
+      "src/core/reviews/get.step.ts": {
+        "x": -168,
+        "y": 216
       },
-      "src/billing/plans/plan-create.step.ts": {
-        "x": -79,
-        "y": 192
-      }
-    }
-  },
-  {
-    "id": "Products",
-    "config": {
-      "src/core/products/update.step.ts": {
-        "x": -593,
-        "y": 42
+      "src/core/reviews/delete.step.ts": {
+        "x": 54,
+        "y": 214
       },
-      "src/core/products/list.step.ts": {
-        "x": -327,
-        "y": 43
-      },
-      "src/core/products/get.step.ts": {
-        "x": -328,
-        "y": 262
-      },
-      "src/core/products/delete.step.ts": {
-        "x": -589,
-        "y": 273
-      },
-      "src/core/products/create.step.ts": {
-        "x": -829,
-        "y": 177
-      }
-    }
-  },
-  {
-    "id": "subscription-flow",
-    "config": {
-      "src/billing/subscription/success-notification.step.ts": {
-        "x": 682,
-        "y": 363
-      },
-      "src/billing/subscription/subscription-me.step.ts": {
-        "x": -640,
-        "y": 182
-      },
-      "src/billing/subscription/renewal-cron.step.ts": {
-        "x": -649,
-        "y": 331
-      },
-      "src/billing/subscription/failure-notification.step.ts": {
-        "x": 681,
-        "y": 217
-      },
-      "src/billing/subscription/create-subscription.step.ts": {
-        "x": -376,
-        "y": 182
-      },
-      "src/billing/subscription/cancellation-expiry-cron.step.ts": {
-        "x": -654,
-        "y": 572
-      },
-      "src/billing/subscription/cancel-subscription.step.ts": {
-        "x": -638,
-        "y": 12
-      }
-    }
-  },
-  {
-    "id": "Orders",
-    "config": {
-      "src/core/orders/update.step.ts": {
-        "x": -433,
-        "y": 462
-      },
-      "src/core/orders/list.step.ts": {
-        "x": -203,
-        "y": 147
-      },
-      "src/core/orders/get.step.ts": {
-        "x": -204,
-        "y": 305
-      },
-      "src/core/orders/delete.step.ts": {
-        "x": -439,
-        "y": 151
-      },
-      "src/core/orders/create.step.ts": {
-        "x": -433,
-        "y": 307
+      "src/core/reviews/create.step.ts": {
+        "x": -401,
+        "y": 17
       }
     }
   }
