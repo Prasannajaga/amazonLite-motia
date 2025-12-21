@@ -39,7 +39,7 @@ export const handler: Handlers['StripeWebhook'] = async (req, { logger, emit }) 
                 topic: 'ORDER_PAID',
                 data: {
                     orderId: metadata.order_id,
-                    userId: userId || 'system'
+                    userId: userId
                 }
             });
         }

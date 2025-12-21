@@ -47,43 +47,6 @@
     }
   },
   {
-    "id": "subscription-flow",
-    "config": {
-      "src/billing/subscription/success-notification.step.ts": {
-        "x": 681,
-        "y": 333
-      },
-      "src/billing/subscription/subscription-me.step.ts": {
-        "x": -640,
-        "y": 182
-      },
-      "src/billing/subscription/stripe-webhook.step.ts": {
-        "x": -654,
-        "y": 833
-      },
-      "src/billing/subscription/renewal-cron.step.ts": {
-        "x": -651,
-        "y": 342
-      },
-      "src/billing/subscription/failure-notification.step.ts": {
-        "x": 680,
-        "y": 177
-      },
-      "src/billing/subscription/create-subscription.step.ts": {
-        "x": -376,
-        "y": 182
-      },
-      "src/billing/subscription/cancellation-expiry-cron.step.ts": {
-        "x": -654,
-        "y": 572
-      },
-      "src/billing/subscription/cancel-subscription.step.ts": {
-        "x": -638,
-        "y": 12
-      }
-    }
-  },
-  {
     "id": "plan",
     "config": {
       "src/billing/plans/plan-update.step.ts": {
@@ -224,6 +187,43 @@
       "src/core/reviews/create.step.ts": {
         "x": -401,
         "y": 17
+      }
+    }
+  },
+  {
+    "id": "subscription-flow",
+    "config": {
+      "src/billing/subscription/success-notification.step.ts": {
+        "x": 681,
+        "y": 333
+      },
+      "src/billing/subscription/subscription-me.step.ts": {
+        "x": -640,
+        "y": 182
+      },
+      "src/billing/subscription/stripe-webhook.step.ts": {
+        "x": -654,
+        "y": 833
+      },
+      "src/billing/subscription/renewal-cron.step.ts": {
+        "x": -651,
+        "y": 342
+      },
+      "src/billing/subscription/failure-notification.step.ts": {
+        "x": 680,
+        "y": 177
+      },
+      "src/billing/subscription/create-subscription.step.ts": {
+        "x": -379,
+        "y": 182
+      },
+      "src/billing/subscription/cancellation-expiry-cron.step.ts": {
+        "x": -654,
+        "y": 572
+      },
+      "src/billing/subscription/cancel-subscription.step.ts": {
+        "x": -638,
+        "y": 12
       }
     }
   }
