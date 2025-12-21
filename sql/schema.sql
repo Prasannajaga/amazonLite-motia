@@ -164,7 +164,7 @@ CREATE TABLE shipments (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_id UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
     tracking_number VARCHAR(50) UNIQUE NOT NULL,
-    carrier VARCHAR(100), -- amazon, bluedart, delhivery
+    carrier VARCHAR(100),  
     status shipment_status NOT NULL DEFAULT 'created',
     shipped_at TIMESTAMP WITH TIME ZONE,
     delivered_at TIMESTAMP WITH TIME ZONE,
@@ -181,10 +181,31 @@ CREATE TABLE shipment_events (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     shipment_id UUID NOT NULL REFERENCES shipments(id) ON DELETE CASCADE,
     event_type shipment_event_type NOT NULL,
-    facility VARCHAR(255), -- warehouse / hub / city
-    metadata JSONB,        -- driver_id, reason, proof, etc
+    facility VARCHAR(255),  
+    metadata JSONB,         
     occurred_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 CREATE INDEX idx_shipment_events_shipment_id 
 ON shipment_events(shipment_id, occurred_at DESC);
+
+-- system-traces
+CREATE TABLE system_traces (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(), 
+    trace_id UUID NOT NULL,               
+    parent_trace_id UUID,          
+    entity_type VARCHAR(50) NOT NULL,   
+    entity_id UUID NOT NULL,
+    action VARCHAR(100) NOT NULL,         
+    status VARCHAR(50) NOT NULL,
+    actor_type VARCHAR(50) NOT NULL,      
+    actor_id UUID,                        
+    source VARCHAR(100),                  
+    request_id VARCHAR(100),              
+    metadata JSONB,              
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_system_traces_trace_id ON system_traces(trace_id);
+CREATE INDEX idx_system_traces_entity ON system_traces(entity_type, entity_id);
+CREATE INDEX idx_system_traces_created_at ON system_traces(created_at DESC);

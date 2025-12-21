@@ -1,6 +1,5 @@
 import { Pool, PoolClient } from 'pg';
 import dotenv from 'dotenv';
-
 dotenv.config();
 
 const pool = new Pool({
@@ -11,16 +10,33 @@ const pool = new Pool({
   port: parseInt(process.env.DB_PORT || '5432', 10),
 });
 
-/**
- * Returns a connected database session (client) from the pool.
- * Remember to release the client when done: `client.release()`
- */
+
 export const getDb = async (): Promise<PoolClient> => {
   try {
-    const client = await pool.connect();
-    return client;
+    // await testSupabaseConnection();
+    // const client = await pool.connect();
+    return getSupaBaseConnections();
   } catch (error) {
     console.error('Error connecting to the database:', error);
+    throw error;
+  }
+};
+
+
+export const getSupaBaseConnections = async (): Promise<PoolClient> => {
+
+  const connectionString = process.env.DB_URL;
+  console.log("supabasePort", connectionString);
+
+  const testPool = new Pool({
+    connectionString: connectionString
+  });
+
+  try {
+    const client = await testPool.connect();
+    return client;
+  } catch (error) {
+    console.error('Failed to connect to Supabase:', error);
     throw error;
   }
 };
